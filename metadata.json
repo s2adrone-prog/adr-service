@@ -1,0 +1,6 @@
+{
+  "name": "ADR E-Store Services",
+  "description": "Creative digital agency offering branding, logo design, software development, and custom gifting solutions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
