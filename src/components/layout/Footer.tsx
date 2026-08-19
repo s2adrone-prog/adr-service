@@ -119,11 +119,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
             <div className="space-y-2 pt-2 text-xs text-slate-300">
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>Global HQ: Silicon Valley, CA & Digital Hub, SG</span>
+                <span>Hridaypur, Netaji Subhas Road, Kolkata - 700127</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-cyan-400 shrink-0" />
-                <a href="tel:+15550192834" className="hover:text-cyan-400 transition-colors">+1 (555) 019-2834</a>
+                <a href="tel:+917003477334" className="hover:text-cyan-400 transition-colors">+91 7003477334</a>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
@@ -163,11 +163,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
               <li>
                 <button onClick={() => onNavigate('service-graphic-design')} className="hover:text-cyan-400 transition-colors text-left">
                   Graphic & Marketing Design
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('service-corporate-branding')} className="hover:text-cyan-400 transition-colors text-left">
-                  Corporate Branding Systems
                 </button>
               </li>
               <li>

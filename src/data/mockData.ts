@@ -67,35 +67,6 @@ export const SERVICES_DATA: ServiceItem[] = [
     ],
   },
   {
-    id: 'corporate-branding',
-    category: 'corporate-branding',
-    title: 'Corporate Branding & Identity Systems',
-    tagline: 'Cohesive, institutional brand systems that build trust and equity.',
-    description:
-      'End-to-end corporate identity kits including full brand strategy books, presentation decks, stationery, employee onboarding merchandise, and company profile collateral.',
-    iconName: 'Building2',
-    turnaroundTime: '7-12 Business Days',
-    popular: true,
-    heroImage:
-      'https://images.unsplash.com/photo-1600508774634-4e11d34730e2?auto=format&fit=crop&w=1200&q=80',
-    features: [
-      'Comprehensive Brand Strategy & Positioning',
-      'Detailed Brand Identity Manual (40+ pages)',
-      'Corporate Stationery & Business Collateral',
-      'Pitch Deck & Keynote Master Templates',
-      'Company Profile Booklets & Annual Reports',
-      'Employee Welcome & Swag Box Branding',
-      'Vehicle Wrap & Signage Guidelines',
-      'Trademark-ready Asset Package',
-    ],
-    deliverables: [
-      'Brand Guidelines Manual (PDF & Interactive)',
-      'Editable Presentation Templates (PPTX/Google Slides)',
-      'Corporate Stationery Vector Masters',
-      'Merchandise Dielines & Swag Specs',
-    ],
-  },
-  {
     id: 'web-mobile-apps',
     category: 'web-mobile-apps',
     title: 'Web Apps & Mobile Development',
@@ -189,7 +160,7 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
   {
     id: 'port-2',
     title: 'Aura Luxury Hotel Brand Book',
-    category: 'corporate-branding',
+    category: 'graphic-design',
     client: 'Aura Hospitality Group',
     year: '2025',
     image:
@@ -603,7 +574,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     avatar:
       'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
     rating: 5,
-    serviceCategory: 'corporate-branding',
+    serviceCategory: 'logo-design',
     verified: true,
     content:
       'ADR E-Store transformed our entire brand ecosystem. Their team delivered sophisticated stationery, pitch decks, and brand guidelines that immediately elevated our presence with institutional investors.',
@@ -653,7 +624,7 @@ export const FAQS = [
   {
     question: 'What is the typical turnaround time for a project?',
     answer:
-      'Turnaround times depend on the scope: Logo design and graphic creatives take 2-4 business days. Corporate branding packages take 7-12 days. Web & mobile application development typically takes 2-4 weeks.',
+      'Turnaround times depend on the scope: Logo design and graphic creatives take 2-4 business days. Custom gifting and print orders take 3-7 days. Web & mobile application development typically takes 2-4 weeks.',
   },
   {
     question: 'How do revisions work for design services?',

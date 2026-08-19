@@ -108,21 +108,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 </button>
               </div>
 
-              {/* Key Trust Metrics */}
-              <div className="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800/80 max-w-lg mx-auto lg:mx-0">
-                <div>
-                  <div className="text-2xl md:text-3xl font-black text-white">1,200+</div>
-                  <div className="text-xs font-semibold text-slate-400">Projects Delivered</div>
-                </div>
-                <div>
-                  <div className="text-2xl md:text-3xl font-black text-cyan-400">99.4%</div>
-                  <div className="text-xs font-semibold text-slate-400">Client Satisfaction</div>
-                </div>
-                <div>
-                  <div className="text-2xl md:text-3xl font-black text-amber-400">15+</div>
-                  <div className="text-xs font-semibold text-slate-400">Design Awards</div>
-                </div>
-              </div>
+
             </div>
 
             {/* Right Column: Interactive Showcase / Card Stack */}

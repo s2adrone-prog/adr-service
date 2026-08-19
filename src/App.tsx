@@ -101,14 +101,6 @@ export default function App() {
           />
         )}
 
-        {currentRoute === 'service-corporate-branding' && (
-          <ServiceDetailView
-            category="corporate-branding"
-            onNavigate={navigateTo}
-            onOpenQuote={handleOpenQuote}
-          />
-        )}
-
         {currentRoute === 'service-web-mobile-apps' && (
           <ServiceDetailView
             category="web-mobile-apps"

@@ -63,13 +63,6 @@ export const Navbar: React.FC<NavbarProps> = ({
       color: 'text-sky-400',
     },
     {
-      route: 'service-corporate-branding' as PageRoute,
-      label: 'Corporate Branding',
-      desc: 'Brand strategy, stationery & decks',
-      icon: Building2,
-      color: 'text-indigo-400',
-    },
-    {
       route: 'service-web-mobile-apps' as PageRoute,
       label: 'Web Apps & Mobile',
       desc: 'React web apps, Flutter & iOS/Android',

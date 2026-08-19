@@ -76,7 +76,6 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
               >
                 <option value="Logo Design & Brand Identity">Logo Design & Brand Identity</option>
                 <option value="Graphic Design & Marketing">Graphic Design & Marketing</option>
-                <option value="Corporate Branding System">Corporate Branding System</option>
                 <option value="Web & Mobile App Development">Web & Mobile App Development</option>
                 <option value="Custom Gifting & Merchandise">Custom Gifting & Merchandise</option>
               </select>

@@ -185,7 +185,6 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                   >
                     <option value="logo-design">Logo Design & Identity</option>
                     <option value="graphic-design">Graphic Design & Marketing</option>
-                    <option value="corporate-branding">Corporate Branding Systems</option>
                     <option value="web-mobile-apps">Web Apps & Mobile Applications</option>
                     <option value="custom-gifting">Custom Gifting & Merchandise</option>
                   </select>

@@ -2,7 +2,6 @@ export type PageRoute =
   | 'home'
   | 'service-logo-design'
   | 'service-graphic-design'
-  | 'service-corporate-branding'
   | 'service-web-mobile-apps'
   | 'service-custom-gifting'
   | 'portfolio'
@@ -16,7 +15,6 @@ export type PageRoute =
 export type ServiceCategory =
   | 'logo-design'
   | 'graphic-design'
-  | 'corporate-branding'
   | 'web-mobile-apps'
   | 'custom-gifting';
 

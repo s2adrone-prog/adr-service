@@ -45,7 +45,6 @@ export const PortfolioView: React.FC<PortfolioViewProps> = ({ onOpenQuote }) => 
             { id: 'all', label: 'All Projects' },
             { id: 'logo-design', label: 'Logo Design' },
             { id: 'graphic-design', label: 'Graphic Design' },
-            { id: 'corporate-branding', label: 'Corporate Branding' },
             { id: 'web-mobile-apps', label: 'Web & Mobile Apps' },
             { id: 'custom-gifting', label: 'Custom Merch' },
           ].map((cat) => (

@@ -67,10 +67,10 @@ export const ContactView: React.FC = () => {
                 </div>
                 <div>
                   <div className="font-bold text-white">Phone Support</div>
-                  <a href="tel:+15550192834" className="hover:text-cyan-400 text-slate-300">
-                    +1 (555) 019-2834
+                  <a href="tel:+917003477334" className="hover:text-cyan-400 text-slate-300 font-semibold">
+                    +91 7003477334
                   </a>
-                  <span className="block text-[11px] text-slate-500">Mon - Fri: 8am - 8pm EST</span>
+                  <span className="block text-[11px] text-slate-500">Mon - Fri: 10am - 8pm IST</span>
                 </div>
               </div>
 
@@ -83,7 +83,6 @@ export const ContactView: React.FC = () => {
                   <a href="mailto:info@adrestore.co.in" className="hover:text-cyan-400 text-cyan-300 font-semibold">
                     info@adrestore.co.in
                   </a>
-                  <span className="block text-[11px] text-slate-500">2-Hour Response Time Guaranteed</span>
                 </div>
               </div>
 
@@ -92,8 +91,8 @@ export const ContactView: React.FC = () => {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="font-bold text-white">Silicon Valley Studio</div>
-                  <span className="text-slate-400">450 Innovation Way, Palo Alto, CA 94301</span>
+                  <div className="font-bold text-white">ADR E-Store</div>
+                  <span className="text-slate-400">Hridaypur, Netaji Subhas Road, Kolkata - 700127</span>
                 </div>
               </div>
             </div>
