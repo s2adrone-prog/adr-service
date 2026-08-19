@@ -28,10 +28,21 @@ export default function App() {
   const [aiAssistantOpen, setAiAssistantOpen] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
 
-  // Scroll to top on route change
-  const navigateTo = (route: PageRoute) => {
+  // Scroll to top or target element on route change
+  const navigateTo = (route: PageRoute, targetId?: string) => {
     setCurrentRoute(route);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (targetId) {
+      setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const handleOpenQuote = (serviceCategory?: string, packageTier?: string) => {

@@ -18,7 +18,7 @@ import { PageRoute } from '../../types';
 
 interface NavbarProps {
   currentRoute: PageRoute;
-  onNavigate: (route: PageRoute) => void;
+  onNavigate: (route: PageRoute, targetId?: string) => void;
   onOpenQuote: (service?: string) => void;
   onOpenAiAssistant: () => void;
   onOpenSearch: () => void;
@@ -90,11 +90,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Logo */}
         <button
           onClick={() => onNavigate('home')}
-          className="flex items-center space-x-2.5 text-left group"
+          className="flex items-center text-left group"
         >
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
-            ADR
-          </div>
           <div>
             <div className="flex items-center space-x-1.5">
               <span className="text-xl font-extrabold tracking-tight text-white group-hover:text-cyan-400 transition-colors">
@@ -221,34 +218,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             {isDarkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-400" />}
           </button>
-
-          {/* AI Assistant */}
-          <button
-            onClick={onOpenAiAssistant}
-            className="px-3 py-2 text-xs font-semibold bg-indigo-950/80 text-indigo-300 hover:bg-indigo-900 rounded-xl border border-indigo-700/50 transition-colors flex items-center space-x-1.5 shadow-sm"
-          >
-            <Bot className="w-3.5 h-3.5 text-cyan-400" />
-            <span>AI Estimator</span>
-          </button>
-
-          {/* Primary CTA */}
-          <button
-            onClick={() => onOpenQuote()}
-            className="px-4 py-2.5 text-xs font-extrabold text-slate-950 bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 rounded-xl shadow-lg shadow-cyan-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center space-x-1.5"
-          >
-            <Sparkles className="w-4 h-4" />
-            <span>Get Free Quote</span>
-          </button>
         </div>
 
         {/* Mobile menu button */}
         <div className="flex lg:hidden items-center space-x-2">
-          <button
-            onClick={onOpenQuote}
-            className="px-3 py-1.5 text-xs font-extrabold text-slate-950 bg-cyan-400 rounded-lg"
-          >
-            Quote
-          </button>
           <button
             onClick={() => setMobileMenu(!mobileMenu)}
             className="p-2 text-slate-300 hover:text-white bg-slate-800 rounded-lg"
@@ -332,18 +305,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          <div className="pt-2 flex flex-col space-y-2">
-            <button
-              onClick={() => {
-                onOpenAiAssistant();
-                setMobileMenu(false);
-              }}
-              className="w-full py-2.5 bg-indigo-950 text-indigo-300 rounded-xl text-xs font-bold border border-indigo-800/50 flex items-center justify-center space-x-2"
-            >
-              <Bot className="w-4 h-4 text-cyan-400" />
-              <span>AI Estimator Assistant</span>
-            </button>
-          </div>
         </div>
       )}
     </header>

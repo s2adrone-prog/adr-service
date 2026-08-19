@@ -118,7 +118,7 @@ export const ContactView: React.FC = () => {
         </div>
 
         {/* Contact Form */}
-        <div className="lg:col-span-7 bg-slate-900 border border-slate-800 p-6 md:p-8 rounded-3xl shadow-2xl space-y-6">
+        <div id="send-message-form" className="lg:col-span-7 bg-slate-900 border border-slate-800 p-6 md:p-8 rounded-3xl shadow-2xl space-y-6 scroll-mt-28">
           <div>
             <h3 className="text-2xl font-black text-white">Send Us a Message</h3>
             <p className="text-slate-400 text-xs mt-1">

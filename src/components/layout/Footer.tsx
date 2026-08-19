@@ -17,7 +17,7 @@ import {
 import { PageRoute } from '../../types';
 
 interface FooterProps {
-  onNavigate: (route: PageRoute) => void;
+  onNavigate: (route: PageRoute, targetId?: string) => void;
   onOpenQuote: () => void;
 }
 
@@ -104,10 +104,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800/80 text-sm">
           {/* Col 1: Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center space-x-2.5">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-cyan-500/20">
-                ADR
-              </div>
+            <div className="flex items-center">
               <span className="text-2xl font-black text-white tracking-tight">
                 ADR <span className="text-cyan-400 font-light">E-Store</span>
               </span>

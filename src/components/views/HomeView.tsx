@@ -28,7 +28,7 @@ import {
 import { BeforeAfterSlider } from '../common/BeforeAfterSlider';
 
 interface HomeViewProps {
-  onNavigate: (route: PageRoute) => void;
+  onNavigate: (route: PageRoute, targetId?: string) => void;
   onOpenQuote: (serviceCategory?: string) => void;
   onOpenAiAssistant: () => void;
 }
@@ -84,27 +84,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
                 <button
-                  onClick={() => onOpenQuote()}
-                  className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 font-black rounded-2xl shadow-xl shadow-cyan-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center space-x-2 cursor-pointer text-sm"
+                  onClick={() => onNavigate('contact', 'send-message-form')}
+                  className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 font-extrabold rounded-2xl shadow-xl shadow-cyan-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center space-x-2 cursor-pointer text-sm"
                 >
-                  <Sparkles className="w-5 h-5" />
-                  <span>Get a Free Quote</span>
-                </button>
-
-                <button
-                  onClick={() => onNavigate('contact')}
-                  className="w-full sm:w-auto px-8 py-4 bg-slate-900/90 hover:bg-slate-800 text-slate-100 font-bold rounded-2xl border border-slate-700/80 transition-all hover:border-cyan-400 flex items-center justify-center space-x-2 cursor-pointer text-sm"
-                >
-                  <MessageSquare className="w-4 h-4 text-cyan-400" />
+                  <MessageSquare className="w-4 h-4 text-slate-950" />
                   <span>Book a Consultation</span>
-                </button>
-
-                <button
-                  onClick={onOpenAiAssistant}
-                  className="w-full sm:w-auto px-5 py-4 bg-indigo-950/80 hover:bg-indigo-900 text-indigo-300 font-bold rounded-2xl border border-indigo-700/50 transition-all flex items-center justify-center space-x-2 text-xs"
-                >
-                  <Bot className="w-4 h-4 text-cyan-400" />
-                  <span>AI Estimator</span>
                 </button>
               </div>
 
@@ -654,14 +638,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </p>
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
               <button
-                onClick={() => onOpenQuote()}
+                onClick={() => onNavigate('contact', 'send-message-form')}
                 className="w-full sm:w-auto px-8 py-4 bg-slate-950 hover:bg-slate-900 text-cyan-400 font-extrabold rounded-2xl text-sm shadow-xl transition-all"
-              >
-                Request Free Quote Now
-              </button>
-              <button
-                onClick={() => onNavigate('contact')}
-                className="w-full sm:w-auto px-8 py-4 bg-white/20 hover:bg-white/30 text-slate-950 font-extrabold rounded-2xl text-sm backdrop-blur-md transition-all"
               >
                 Contact Our Agency
               </button>
