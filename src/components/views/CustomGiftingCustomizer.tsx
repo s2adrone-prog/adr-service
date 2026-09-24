@@ -11,8 +11,8 @@ import {
   Layers,
   ShoppingBag,
 } from 'lucide-react';
-import { GIFTING_PRODUCTS } from '../../data/mockData';
 import { GiftingProduct } from '../../types';
+import { useSiteConfig } from '../../context/SiteConfigContext';
 
 interface CustomGiftingCustomizerProps {
   onOpenQuote: (service?: string) => void;
@@ -21,15 +21,18 @@ interface CustomGiftingCustomizerProps {
 export const CustomGiftingCustomizer: React.FC<CustomGiftingCustomizerProps> = ({
   onOpenQuote,
 }) => {
+  const { config } = useSiteConfig();
+  const giftingList = config.giftingProducts;
+
   const [selectedProduct, setSelectedProduct] = useState<GiftingProduct>(
-    GIFTING_PRODUCTS[0]
+    giftingList[0]
   );
   const [selectedColor, setSelectedColor] = useState(
-    GIFTING_PRODUCTS[0].colors[0]
+    giftingList[0]?.colors[0] || '#000000'
   );
   const [selectedSize, setSelectedSize] = useState('L');
   const [selectedPrintMethod, setSelectedPrintMethod] = useState(
-    GIFTING_PRODUCTS[0].printMethods[0]
+    giftingList[0]?.printMethods[0] || 'Direct to Garment'
   );
   const [quantity, setQuantity] = useState(25);
   const [customText, setCustomText] = useState('ADR BRAND TEAM');
@@ -131,7 +134,7 @@ export const CustomGiftingCustomizer: React.FC<CustomGiftingCustomizerProps> = (
               <span>1. Choose Merchandise Item</span>
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {GIFTING_PRODUCTS.map((prod) => (
+              {giftingList.map((prod) => (
                 <button
                   key={prod.id}
                   onClick={() => handleProductSelect(prod)}

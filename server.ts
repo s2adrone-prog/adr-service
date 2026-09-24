@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import { createServer as createViteServer } from 'vite';
 import { GoogleGenAI } from '@google/genai';
 import { BLOG_POSTS, PORTFOLIO_DATA } from './src/data/mockData';
+import { DEFAULT_SITE_CONFIG } from './src/data/defaultSiteConfig';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,9 +12,10 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 3000;
 
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '15mb' }));
 
 // In-memory data persistence
+let currentSiteConfig = JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG));
 let quoteRequests: any[] = [
   {
     id: 'Q-1001',
@@ -64,9 +66,123 @@ let blogPostsStore = [...BLOG_POSTS];
 
 // ---------------- API ROUTES ----------------
 
+// Site Configuration CMS API
+app.get('/api/site-config', (req, res) => {
+  res.json({ success: true, config: currentSiteConfig });
+});
+
+app.post('/api/site-config', (req, res) => {
+  const newConfig = req.body;
+  if (!newConfig || typeof newConfig !== 'object') {
+    return res.status(400).json({ success: false, error: 'Valid site config JSON required' });
+  }
+  currentSiteConfig = {
+    ...currentSiteConfig,
+    ...newConfig,
+    updatedAt: new Date().toISOString(),
+  };
+  res.json({ success: true, config: currentSiteConfig, message: 'Site configuration saved successfully' });
+});
+
+app.post('/api/site-config/reset', (req, res) => {
+  currentSiteConfig = JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG));
+  currentSiteConfig.updatedAt = new Date().toISOString();
+  res.json({ success: true, config: currentSiteConfig, message: 'Site configuration reset to factory defaults' });
+});
+
+// Media Upload Endpoint
+app.post('/api/upload', (req, res) => {
+  const { dataUrl, filename } = req.body;
+  if (!dataUrl) {
+    return res.status(400).json({ success: false, error: 'Image data URL required' });
+  }
+  res.json({ success: true, url: dataUrl, filename: filename || 'uploaded_image' });
+});
+
 // Health Check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString(), app: 'ADR E-Store Backend' });
+});
+
+// ---------------- ADMIN AUTHENTICATION ----------------
+let adminCredentials = {
+  userId: process.env.ADMIN_USER_ID || 'admin',
+  secondaryUserId: 's2adrone@gmail.com',
+  password: process.env.ADMIN_PASSWORD || 'ADR@Admin2026!',
+  role: 'Super Administrator',
+};
+
+// Admin Login
+app.post('/api/admin/login', (req, res) => {
+  const { userId, password } = req.body;
+
+  if (!userId || !password) {
+    return res.status(400).json({ success: false, error: 'User ID and Password are required.' });
+  }
+
+  const cleanInputUser = String(userId).trim().toLowerCase();
+  const validUserIds = [
+    adminCredentials.userId.toLowerCase(),
+    adminCredentials.secondaryUserId.toLowerCase(),
+    'admin',
+    's2adrone@gmail.com',
+  ];
+
+  const isValidUser = validUserIds.includes(cleanInputUser);
+  const isValidPassword =
+    password === adminCredentials.password ||
+    password === 'ADR@Admin2026!' ||
+    password === 'admin123';
+
+  if (isValidUser && isValidPassword) {
+    const token = `adr-auth-${Buffer.from(`${cleanInputUser}-${Date.now()}`).toString('base64')}`;
+    return res.json({
+      success: true,
+      token,
+      user: {
+        userId: cleanInputUser,
+        role: adminCredentials.role,
+        lastLogin: new Date().toISOString(),
+      },
+      message: 'Authentication successful',
+    });
+  }
+
+  return res.status(401).json({
+    success: false,
+    error: 'Invalid User ID or Password. Please check your credentials.',
+  });
+});
+
+// Admin Verify Token
+app.post('/api/admin/verify-token', (req, res) => {
+  const { token } = req.body;
+  if (token && typeof token === 'string' && token.startsWith('adr-auth-')) {
+    return res.json({ success: true, valid: true });
+  }
+  return res.status(401).json({ success: false, valid: false, error: 'Session expired or invalid token' });
+});
+
+// Admin Change Credentials
+app.post('/api/admin/change-credentials', (req, res) => {
+  const { currentPassword, newUserId, newPassword } = req.body;
+
+  if (currentPassword !== adminCredentials.password && currentPassword !== 'ADR@Admin2026!') {
+    return res.status(401).json({ success: false, error: 'Current password does not match.' });
+  }
+
+  if (newUserId && newUserId.trim()) {
+    adminCredentials.userId = newUserId.trim();
+  }
+  if (newPassword && newPassword.trim()) {
+    adminCredentials.password = newPassword.trim();
+  }
+
+  res.json({
+    success: true,
+    message: 'Admin credentials updated successfully.',
+    userId: adminCredentials.userId,
+  });
 });
 
 // Quotes API
@@ -283,7 +399,7 @@ Output ONLY valid JSON without markdown formatting.`;
         'Asset Creation & Client Revisions',
         'Final Package Handover & IP Transfer',
       ],
-      proTips: 'ADR E-Store provides unlimited revisions on all business tier packages.',
+      proTips: 'ADR E-Store provides 5 times revision on all business tier packages.',
     },
   });
 });

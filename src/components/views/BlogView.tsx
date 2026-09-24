@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FileText, Search, ArrowRight, User, Calendar, Clock, ArrowLeft } from 'lucide-react';
-import { BLOG_POSTS } from '../../data/mockData';
 import { BlogPost, PageRoute } from '../../types';
+import { useSiteConfig } from '../../context/SiteConfigContext';
 
 interface BlogViewProps {
   onNavigate: (route: PageRoute) => void;
@@ -9,11 +9,14 @@ interface BlogViewProps {
 }
 
 export const BlogView: React.FC<BlogViewProps> = ({ onNavigate, onOpenQuote }) => {
+  const { config } = useSiteConfig();
+  const blogPosts = config.blogPosts;
+
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredPosts = BLOG_POSTS.filter((post) => {
+  const filteredPosts = blogPosts.filter((post) => {
     const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
     const matchesSearch =
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||

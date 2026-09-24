@@ -13,8 +13,10 @@ import {
   ShieldCheck,
   Award,
   Globe,
+  Sliders,
 } from 'lucide-react';
 import { PageRoute } from '../../types';
+import { useSiteConfig } from '../../context/SiteConfigContext';
 
 interface FooterProps {
   onNavigate: (route: PageRoute, targetId?: string) => void;
@@ -22,6 +24,8 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
+  const { config } = useSiteConfig();
+  const { brand, guarantees } = config;
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -106,41 +110,41 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center">
               <span className="text-2xl font-black text-white tracking-tight">
-                ADR <span className="text-cyan-400 font-light">E-Store</span>
+                {brand.name}
               </span>
             </div>
             <p className="text-slate-400 text-sm max-w-sm leading-relaxed">
-              Transforming creative ideas into high-converting brands, modern web & mobile applications, and custom print-on-demand corporate gifting solutions globally.
+              {brand.description}
             </p>
 
             <div className="space-y-2 pt-2 text-xs text-slate-300">
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>Hridaypur, Netaji Subhas Road, Kolkata - 700127</span>
+                <span>{brand.address}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-cyan-400 shrink-0" />
-                <a href="tel:+917003477334" className="hover:text-cyan-400 transition-colors">+91 7003477334</a>
+                <a href={`tel:${brand.phone}`} className="hover:text-cyan-400 transition-colors">{brand.phone}</a>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
-                <a href="mailto:info@adrestore.co.in" className="hover:text-cyan-400 transition-colors font-medium">
-                  info@adrestore.co.in
+                <a href={`mailto:${brand.email}`} className="hover:text-cyan-400 transition-colors font-medium">
+                  {brand.email}
                 </a>
               </div>
             </div>
 
             <div className="flex items-center space-x-3 pt-2">
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-2 bg-slate-900 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-cyan-400 transition-colors">
+              <a href={brand.socialLinks.linkedin || "https://linkedin.com"} target="_blank" rel="noreferrer" className="p-2 bg-slate-900 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-cyan-400 transition-colors">
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="p-2 bg-slate-900 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-cyan-400 transition-colors">
+              <a href={brand.socialLinks.twitter || "https://twitter.com"} target="_blank" rel="noreferrer" className="p-2 bg-slate-900 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-cyan-400 transition-colors">
                 <Twitter className="w-4 h-4" />
               </a>
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="p-2 bg-slate-900 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-cyan-400 transition-colors">
+              <a href={brand.socialLinks.github || "https://github.com"} target="_blank" rel="noreferrer" className="p-2 bg-slate-900 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-cyan-400 transition-colors">
                 <Github className="w-4 h-4" />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="p-2 bg-slate-900 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-cyan-400 transition-colors">
+              <a href={brand.socialLinks.instagram || "https://instagram.com"} target="_blank" rel="noreferrer" className="p-2 bg-slate-900 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-cyan-400 transition-colors">
                 <Instagram className="w-4 h-4" />
               </a>
             </div>
@@ -212,15 +216,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
             <div className="space-y-3 text-xs text-slate-400">
               <div className="flex items-start space-x-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span>100% Commercial Copyright Ownership Transfer</span>
+                <span>{guarantees.guarantee1}</span>
               </div>
               <div className="flex items-start space-x-2">
                 <Award className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                <span>Unlimited Revisions on Pro & Business Tiers</span>
+                <span>{guarantees.guarantee2}</span>
               </div>
               <div className="flex items-start space-x-2">
                 <Globe className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                <span>Global Express Merchandise & Swag Shipping</span>
+                <span>{guarantees.guarantee3}</span>
               </div>
 
               <div className="pt-2">
@@ -238,7 +242,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4">
           <div>
-            © {new Date().getFullYear()} <span className="text-slate-300 font-semibold">ADR E-Store</span>. All Rights Reserved. Designed & Engineered with precision.
+            © {new Date().getFullYear()} <span className="text-slate-300 font-semibold">{brand.name}</span>. All Rights Reserved. Designed & Engineered with precision.
           </div>
 
           <div className="flex items-center space-x-6">

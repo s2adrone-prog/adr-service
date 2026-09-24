@@ -10,7 +10,8 @@ export type PageRoute =
   | 'blog-detail'
   | 'contact'
   | 'privacy'
-  | 'terms';
+  | 'terms'
+  | 'admin';
 
 export type ServiceCategory =
   | 'logo-design'
@@ -157,4 +158,76 @@ export interface Testimonial {
   content: string;
   serviceCategory: ServiceCategory;
   verified: boolean;
+}
+
+export interface BrandStylesConfig {
+  primaryColor: string;
+  secondaryColor: string;
+  accentGradient: string;
+  darkBgColor: string;
+  fontFamily: 'sans' | 'serif' | 'mono' | 'display';
+  borderRadius: 'rounded-lg' | 'rounded-xl' | 'rounded-2xl' | 'rounded-3xl';
+  headerStyle: 'glass' | 'solid' | 'transparent';
+  enableAmbientGlow: boolean;
+}
+
+export interface BrandInfoConfig {
+  name: string;
+  shortName: string;
+  tagline: string;
+  description: string;
+  showLogoIcon: boolean;
+  logoIconText: string;
+  phone: string;
+  phoneHours: string;
+  email: string;
+  address: string;
+  whatsappNumber: string;
+  socialLinks: {
+    linkedin?: string;
+    twitter?: string;
+    instagram?: string;
+    github?: string;
+    behance?: string;
+  };
+}
+
+export interface HeroContentConfig {
+  badgeText: string;
+  titlePrefix: string;
+  titleHighlight: string;
+  titleSuffix: string;
+  paragraph: string;
+  ctaButtonText: string;
+  ctaButtonTarget: 'contact' | 'portfolio' | 'services';
+  showTrustMetrics: boolean;
+  heroImage: string;
+}
+
+export interface TrustGuaranteesConfig {
+  guarantee1: string;
+  guarantee2: string;
+  guarantee3: string;
+}
+
+export interface BottomCtaConfig {
+  title: string;
+  description: string;
+  buttonText: string;
+}
+
+export interface SiteConfig {
+  brand: BrandInfoConfig;
+  styles: BrandStylesConfig;
+  hero: HeroContentConfig;
+  guarantees: TrustGuaranteesConfig;
+  bottomCta: BottomCtaConfig;
+  services: ServiceItem[];
+  portfolio: PortfolioItem[];
+  pricingPackages: PricingPackage[];
+  giftingProducts: GiftingProduct[];
+  blogPosts: BlogPost[];
+  testimonials: Testimonial[];
+  faqs: { question: string; answer: string }[];
+  updatedAt?: string;
 }

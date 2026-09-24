@@ -28,7 +28,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Complete Color & Typography Palette',
       'Vector AI, EPS, SVG, PNG & Print PDF Files',
       '3D Realistic Mockups & Social Avatars',
-      'Unlimited Revision Cycles (Configurable)',
+      '5 times Revision Cycles (Configurable)',
     ],
     deliverables: [
       'Vector Source Files (AI, EPS, SVG)',
@@ -294,11 +294,11 @@ export const PRICING_PACKAGES: PricingPackage[] = [
       'Complete Source File Suite',
       'Social Media Profile Avatar Pack',
       'Stationery Mockups (Card & Letterhead)',
-      'Unlimited Revisions',
+      '5 times Revision',
       'Priority Design Support',
     ],
     deliveryTime: '4 Business Days',
-    revisions: 'Unlimited',
+    revisions: '5 times',
   },
   {
     id: 'logo-enterprise',
@@ -312,11 +312,11 @@ export const PRICING_PACKAGES: PricingPackage[] = [
       'Sub-logo & Favicon Variants',
       'Typography & Color System Manual',
       'Stationery + Social Media Kit',
-      'Unlimited Revisions',
+      '5 times Revision',
       'Dedicated Creative Director',
     ],
     deliveryTime: '5-7 Business Days',
-    revisions: 'Unlimited',
+    revisions: '5 times',
   },
 
   // Graphic Design
@@ -349,10 +349,10 @@ export const PRICING_PACKAGES: PricingPackage[] = [
       'Ad Creatives & Email Headers',
       'Dedicated Designer Allocation',
       '48-Hour Turnaround per Asset',
-      'Unlimited Revisions',
+      '5 times Revision',
     ],
     deliveryTime: '48h per task',
-    revisions: 'Unlimited',
+    revisions: '5 times',
   },
 
   // Web & Mobile Apps
@@ -629,7 +629,7 @@ export const FAQS = [
   {
     question: 'How do revisions work for design services?',
     answer:
-      'We offer configurable revision cycles. Our Business and Enterprise packages feature unlimited revisions until you are 100% satisfied with your final assets.',
+      'We offer configurable revision cycles. Our Business and Enterprise packages feature 5 times revision until you are 100% satisfied with your final assets.',
   },
   {
     question: 'Can I order custom gifts and merchandise in bulk?',

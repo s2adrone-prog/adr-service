@@ -7,22 +7,24 @@ import {
   CheckCircle2,
   Star,
 } from 'lucide-react';
-import { PORTFOLIO_DATA } from '../../data/mockData';
 import { PortfolioItem, ServiceCategory } from '../../types';
 import { BeforeAfterSlider } from '../common/BeforeAfterSlider';
+import { useSiteConfig } from '../../context/SiteConfigContext';
 
 interface PortfolioViewProps {
   onOpenQuote: (serviceCategory?: string) => void;
 }
 
 export const PortfolioView: React.FC<PortfolioViewProps> = ({ onOpenQuote }) => {
+  const { config } = useSiteConfig();
+  const { portfolio } = config;
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(null);
 
   const filteredProjects =
     activeCategory === 'all'
-      ? PORTFOLIO_DATA
-      : PORTFOLIO_DATA.filter((p) => p.category === activeCategory);
+      ? portfolio
+      : portfolio.filter((p) => p.category === activeCategory);
 
   return (
     <div className="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">

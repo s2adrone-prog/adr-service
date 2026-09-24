@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle2, MessageSquare, Clock, Globe, Loader2 } from 'lucide-react';
+import { useSiteConfig } from '../../context/SiteConfigContext';
 
 export const ContactView: React.FC = () => {
+  const { config } = useSiteConfig();
+  const { brand } = config;
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -67,10 +71,10 @@ export const ContactView: React.FC = () => {
                 </div>
                 <div>
                   <div className="font-bold text-white">Phone Support</div>
-                  <a href="tel:+917003477334" className="hover:text-cyan-400 text-slate-300 font-semibold">
-                    +91 7003477334
+                  <a href={`tel:${brand.phone}`} className="hover:text-cyan-400 text-slate-300 font-semibold">
+                    {brand.phone}
                   </a>
-                  <span className="block text-[11px] text-slate-500">Mon - Fri: 10am - 8pm IST</span>
+                  <span className="block text-[11px] text-slate-500">{brand.phoneHours}</span>
                 </div>
               </div>
 
@@ -80,8 +84,8 @@ export const ContactView: React.FC = () => {
                 </div>
                 <div>
                   <div className="font-bold text-white">Email Consultation & Enquiries</div>
-                  <a href="mailto:info@adrestore.co.in" className="hover:text-cyan-400 text-cyan-300 font-semibold">
-                    info@adrestore.co.in
+                  <a href={`mailto:${brand.email}`} className="hover:text-cyan-400 text-cyan-300 font-semibold">
+                    {brand.email}
                   </a>
                 </div>
               </div>
@@ -91,8 +95,8 @@ export const ContactView: React.FC = () => {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="font-bold text-white">ADR E-Store</div>
-                  <span className="text-slate-400">Hridaypur, Netaji Subhas Road, Kolkata - 700127</span>
+                  <div className="font-bold text-white">{brand.name}</div>
+                  <span className="text-slate-400">{brand.address}</span>
                 </div>
               </div>
             </div>

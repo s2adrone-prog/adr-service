@@ -14,7 +14,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { ServiceCategory, PageRoute } from '../../types';
-import { SERVICES_DATA, PORTFOLIO_DATA, PRICING_PACKAGES } from '../../data/mockData';
+import { useSiteConfig } from '../../context/SiteConfigContext';
 
 interface ServiceDetailViewProps {
   category: ServiceCategory;
@@ -27,9 +27,10 @@ export const ServiceDetailView: React.FC<ServiceDetailViewProps> = ({
   onNavigate,
   onOpenQuote,
 }) => {
-  const service = SERVICES_DATA.find((s) => s.category === category) || SERVICES_DATA[0];
-  const portfolioItems = PORTFOLIO_DATA.filter((p) => p.category === category);
-  const pricingTiers = PRICING_PACKAGES.filter((p) => p.serviceCategory === category);
+  const { config } = useSiteConfig();
+  const service = config.services.find((s) => s.category === category) || config.services[0];
+  const portfolioItems = config.portfolio.filter((p) => p.category === category);
+  const pricingTiers = config.pricingPackages.filter((p) => p.serviceCategory === category);
 
   const iconMap: Record<string, any> = {
     PenTool,

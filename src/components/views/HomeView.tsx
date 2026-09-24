@@ -19,13 +19,10 @@ import {
 } from 'lucide-react';
 import { PageRoute } from '../../types';
 import {
-  SERVICES_DATA,
-  PORTFOLIO_DATA,
-  TESTIMONIALS_DATA,
-  FAQS,
   TECH_STACK,
 } from '../../data/mockData';
 import { BeforeAfterSlider } from '../common/BeforeAfterSlider';
+import { useSiteConfig } from '../../context/SiteConfigContext';
 
 interface HomeViewProps {
   onNavigate: (route: PageRoute, targetId?: string) => void;
@@ -38,16 +35,19 @@ export const HomeView: React.FC<HomeViewProps> = ({
   onOpenQuote,
   onOpenAiAssistant,
 }) => {
+  const { config } = useSiteConfig();
+  const { hero, services, portfolio, testimonials, faqs, bottomCta } = config;
+
   const [activePortfolioTab, setActivePortfolioTab] = useState('all');
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [faqSearch, setFaqSearch] = useState('');
 
   const filteredPortfolio =
     activePortfolioTab === 'all'
-      ? PORTFOLIO_DATA
-      : PORTFOLIO_DATA.filter((p) => p.category === activePortfolioTab);
+      ? portfolio
+      : portfolio.filter((p) => p.category === activePortfolioTab);
 
-  const filteredFaqs = FAQS.filter(
+  const filteredFaqs = faqs.filter(
     (f) =>
       f.question.toLowerCase().includes(faqSearch.toLowerCase()) ||
       f.answer.toLowerCase().includes(faqSearch.toLowerCase())
@@ -66,19 +66,19 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/30 text-cyan-400 text-xs font-bold shadow-lg shadow-cyan-500/10 backdrop-blur-md">
                 <Sparkles className="w-4 h-4 text-cyan-400 animate-spin" />
-                <span>ADR E-Store Digital Agency & Custom Gifting</span>
+                <span>{hero.badgeText}</span>
               </div>
 
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-[1.1]">
-                Transforming Ideas into{' '}
+                {hero.titlePrefix}{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400">
-                  Powerful Brands
+                  {hero.titleHighlight}
                 </span>{' '}
-                & Digital Experiences.
+                {hero.titleSuffix}
               </h1>
 
               <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-                ADR E-Store is a full-service creative agency offering custom logo design, graphic collateral, corporate branding identity, high-performance web/mobile applications, and bespoke print-on-demand gifting solutions.
+                {hero.paragraph}
               </p>
 
               {/* CTAs */}
@@ -88,7 +88,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 font-extrabold rounded-2xl shadow-xl shadow-cyan-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center space-x-2 cursor-pointer text-sm"
                 >
                   <MessageSquare className="w-4 h-4 text-slate-950" />
-                  <span>Book a Consultation</span>
+                  <span>{hero.ctaButtonText}</span>
                 </button>
               </div>
 
@@ -187,7 +187,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {SERVICES_DATA.map((service) => {
+          {services.map((service) => {
             const iconMap: Record<string, any> = {
               PenTool: PenTool,
               Palette: Palette,
@@ -543,7 +543,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {TESTIMONIALS_DATA.map((t) => (
+          {testimonials.map((t) => (
             <div
               key={t.id}
               className="bg-slate-900 border border-slate-800 p-6 md:p-8 rounded-3xl space-y-4 shadow-xl relative"
@@ -631,17 +631,17 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <div className="bg-gradient-to-r from-cyan-600 via-sky-600 to-indigo-700 rounded-3xl p-8 md:p-14 text-center space-y-6 shadow-2xl relative overflow-hidden">
           <div className="relative z-10 max-w-2xl mx-auto space-y-4">
             <h2 className="text-3xl md:text-4xl font-black text-slate-950 tracking-tight">
-              Ready to Launch Your Brand & Digital Experience?
+              {bottomCta.title}
             </h2>
             <p className="text-slate-900/90 text-sm md:text-base font-medium">
-              Get in touch today for a free custom quote, brand audit, or software estimate from our creative team.
+              {bottomCta.description}
             </p>
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
               <button
                 onClick={() => onNavigate('contact', 'send-message-form')}
-                className="w-full sm:w-auto px-8 py-4 bg-slate-950 hover:bg-slate-900 text-cyan-400 font-extrabold rounded-2xl text-sm shadow-xl transition-all"
+                className="w-full sm:w-auto px-8 py-4 bg-slate-950 hover:bg-slate-900 text-cyan-400 font-extrabold rounded-2xl text-sm shadow-xl transition-all cursor-pointer"
               >
-                Contact Our Agency
+                {bottomCta.buttonText}
               </button>
             </div>
           </div>

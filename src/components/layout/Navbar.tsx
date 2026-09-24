@@ -13,8 +13,10 @@ import {
   Sun,
   Moon,
   Bot,
+  Sliders,
 } from 'lucide-react';
 import { PageRoute } from '../../types';
+import { useSiteConfig } from '../../context/SiteConfigContext';
 
 interface NavbarProps {
   currentRoute: PageRoute;
@@ -35,6 +37,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   isDarkMode,
   onToggleDarkMode,
 }) => {
+  const { config } = useSiteConfig();
+  const { brand } = config;
   const [scrolled, setScrolled] = useState(false);
   const [servicesDropdown, setServicesDropdown] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -95,11 +99,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div>
             <div className="flex items-center space-x-1.5">
               <span className="text-xl font-extrabold tracking-tight text-white group-hover:text-cyan-400 transition-colors">
-                ADR <span className="text-cyan-400 font-light">E-Store</span>
+                {brand.name}
               </span>
             </div>
             <span className="text-[10px] font-semibold text-slate-400 tracking-wider uppercase block -mt-1">
-              Creative Digital Agency
+              {brand.tagline}
             </span>
           </div>
         </button>
